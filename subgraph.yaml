@@ -1,16 +1,19 @@
-specVersion: 0.0.1
+specVersion: 0.0.2
+description: After swaping the WINGS token to XFI, the XFI is unlocked in 180 days.
+repository: https://github.com/gruberx/xfi-token
 schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: Contract
+    name: Dfinance XFI Token
     network: mainnet
     source:
       address: "0xE4E822C0d5b329E8BB637972467d2E313824eFA0"
       abi: Contract
+      startBlock: 10783241
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.2
+      apiVersion: 0.0.4
       language: wasm/assemblyscript
       entities:
         - Approval
