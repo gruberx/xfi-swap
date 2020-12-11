@@ -1,0 +1,53 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Contract
+    network: mainnet
+    source:
+      address: "0xE4E822C0d5b329E8BB637972467d2E313824eFA0"
+      abi: Contract
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.2
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - MigrationsAllowed
+        - ReserveWithdrawal
+        - RoleAdminChanged
+        - RoleGranted
+        - RoleRevoked
+        - Transfer
+        - TransfersStarted
+        - TransfersStopped
+        - VestingBalanceMigrated
+        - VestingStartChanged
+      abis:
+        - name: Contract
+          file: ./abis/Contract.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: MigrationsAllowed()
+          handler: handleMigrationsAllowed
+        - event: ReserveWithdrawal(indexed address,uint256)
+          handler: handleReserveWithdrawal
+        - event: RoleAdminChanged(indexed bytes32,indexed bytes32,indexed bytes32)
+          handler: handleRoleAdminChanged
+        - event: RoleGranted(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleGranted
+        - event: RoleRevoked(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleRevoked
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: TransfersStarted()
+          handler: handleTransfersStarted
+        - event: TransfersStopped()
+          handler: handleTransfersStopped
+        - event: VestingBalanceMigrated(indexed address,bytes32,uint256,uint256)
+          handler: handleVestingBalanceMigrated
+        - event: VestingStartChanged(uint256,uint256,uint256)
+          handler: handleVestingStartChanged
+      file: ./src/mapping.ts
