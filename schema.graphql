@@ -1,4 +1,4 @@
-type ExampleEntity @entity {
+type Base @entity {
   id: ID!
   count: BigInt!
   owner: Bytes! # address
